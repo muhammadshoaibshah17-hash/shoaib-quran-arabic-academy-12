@@ -1,83 +1,386 @@
-import { MessageCircle, Mail, ShieldCheck } from "lucide-react";
+"use client";
+
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+
+import {
+  MessageCircle,
+  Send,
+  Mail,
+  ShieldCheck,
+} from "lucide-react";
+
 
 export default function AskMufti() {
+
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+
+  const [loading, setLoading] = useState(false);
+
+  const [success, setSuccess] = useState("");
+
+  const [error, setError] = useState("");
+
+
+
+  const SERVICE_ID = "service_zno89lh";
+
+  const TEMPLATE_ID = "template_4bj7ekk";
+
+  const PUBLIC_KEY = "qum4TcvWDxM8KWX7g";
+
+
+
+
+
+ const handleSubmit = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
+
+  e.preventDefault();
+
+  console.log("SUBMIT CLICKED");
+
+  setSuccess("");
+  setError("");
+
+  if (!formRef.current) {
+    console.log("FORM REF MISSING");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+
+    console.log("SENDING EMAIL...");
+
+    await emailjs.sendForm(
+      SERVICE_ID,
+      TEMPLATE_ID,
+      formRef.current,
+      PUBLIC_KEY
+    );
+
+    console.log("EMAIL SENT");
+
+    setSuccess(
+      "Your question has been submitted successfully."
+    );
+
+    formRef.current.reset();
+
+
+  } catch (err) {
+
+    console.error("EMAILJS ERROR:", err);
+
+    setError(
+      "Something went wrong"
+    );
+
+  }
+
+  setLoading(false);
+
+};
+
+
+
+
   return (
-    <section className="py-24 bg-gradient-to-r from-emerald-900 to-emerald-700 text-white">
-      <div className="max-w-7xl mx-auto px-6">
 
-        <div className="text-center">
 
-          <ShieldCheck
-            size={70}
-            className="mx-auto text-yellow-400"
-          />
+    <section className="py-16 bg-gray-50">
 
-          <h2 className="text-5xl font-bold mt-8">
-            Ask a Mufti
-          </h2>
 
-          <p className="text-xl text-emerald-100 mt-6 max-w-3xl mx-auto leading-8">
-            Have an Islamic question?
-            Submit your question and receive authentic guidance
-            based on the Quran and Sunnah.
-          </p>
+      <div className="max-w-4xl mx-auto px-6">
 
-        </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mt-16">
 
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8">
+        <div className="bg-white rounded-3xl shadow-xl p-8">
 
-            <MessageCircle
-              size={50}
-              className="text-yellow-400"
+
+
+          <div className="text-center mb-8">
+
+
+            <ShieldCheck
+              className="mx-auto text-emerald-700"
+              size={45}
             />
 
-            <h3 className="text-3xl font-bold mt-6">
-              WhatsApp
-            </h3>
 
-            <p className="mt-4 text-emerald-100">
-              Send your Islamic questions directly on WhatsApp.
+            <h2 className="text-4xl font-bold text-emerald-900 mt-4">
+
+              Ask Mufti
+
+            </h2>
+
+
+            <p className="text-gray-600 mt-3">
+
+              Submit your Islamic questions and get authentic guidance.
+
             </p>
 
-            <a
-              href="https://wa.me/923045103458"
-              target="_blank"
-              className="inline-block mt-8 bg-yellow-400 text-emerald-950 px-8 py-4 rounded-full font-bold hover:bg-yellow-300 transition"
-            >
-              Ask on WhatsApp
-            </a>
 
           </div>
 
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8">
 
-            <Mail
-              size={50}
-              className="text-yellow-400"
+
+
+
+          {success && (
+
+            <div className="bg-green-100 text-green-800 p-4 rounded-xl mb-5">
+
+              {success}
+
+            </div>
+
+          )}
+
+
+
+
+          {error && (
+
+            <div className="bg-red-100 text-red-800 p-4 rounded-xl mb-5">
+
+              {error}
+
+            </div>
+
+          )}
+
+
+
+
+
+
+
+          <form
+
+            ref={formRef}
+
+            onSubmit={handleSubmit}
+
+            className="space-y-5"
+
+          >
+
+
+
+
+            <input
+
+              type="text"
+
+              name="name"
+
+              placeholder="Your Name"
+
+              required
+
+              className="w-full border rounded-xl p-4"
+
             />
 
-            <h3 className="text-3xl font-bold mt-6">
-              Email
-            </h3>
 
-            <p className="mt-4 text-emerald-100">
-              Send detailed Islamic questions by email.
-            </p>
 
-            <a
-              href="mailto:muhammadshoaibshah17@gmail.com"
-              className="inline-block mt-8 bg-white text-emerald-900 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition"
+
+
+            <input
+
+              type="email"
+
+              name="email"
+
+              placeholder="Email Address"
+
+              className="w-full border rounded-xl p-4"
+
+            />
+
+
+
+
+
+            <input
+
+              type="text"
+
+              name="phone"
+
+              placeholder="WhatsApp Number"
+
+              required
+
+              className="w-full border rounded-xl p-4"
+
+            />
+
+
+
+
+
+
+            <select
+
+              name="category"
+
+              required
+
+              className="w-full border rounded-xl p-4"
+
             >
-              Send Email
-            </a>
 
-          </div>
+
+              <option value="">
+
+                Select Category
+
+              </option>
+
+
+              <option>
+
+                Aqeedah
+
+              </option>
+
+
+              <option>
+
+                Fiqh
+
+              </option>
+
+
+              <option>
+
+                Quran & Tafseer
+
+              </option>
+
+
+              <option>
+
+                Hadith
+
+              </option>
+
+
+              <option>
+
+                Family Issues
+
+              </option>
+
+
+              <option>
+
+                Other
+
+              </option>
+
+
+            </select>
+
+
+
+
+
+
+            <textarea
+
+              name="question"
+
+              rows={6}
+
+              placeholder="Write your Islamic question here..."
+
+              required
+
+              className="w-full border rounded-xl p-4"
+
+            />
+
+
+
+
+
+
+
+            <button
+
+              type="submit"
+
+              disabled={loading}
+
+              className="w-full bg-emerald-700 hover:bg-emerald-800 disabled:bg-gray-400 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3"
+
+            >
+
+
+              <Send size={22}/>
+
+
+              {loading
+                ? "Sending..."
+                : "Submit Question"
+              }
+
+
+            </button>
+
+
+
+
+          </form>
+
+
+
+
+
+
+          <a
+
+            href="https://wa.me/923045103458"
+
+            target="_blank"
+
+            className="mt-5 w-full bg-green-500 hover:bg-green-600 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-3"
+
+          >
+
+
+            <MessageCircle size={22}/>
+
+
+            Ask Through WhatsApp
+
+
+          </a>
+
+
+
+
 
         </div>
+
+
 
       </div>
+
+
+
     </section>
+
+
   );
+
 }
