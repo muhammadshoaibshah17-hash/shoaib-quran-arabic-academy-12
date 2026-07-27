@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { blogs } from "../lib/blogData";
 
 import {
   BookOpen,
@@ -15,58 +17,6 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-
-  const blogs = [
-
-    {
-      title: "How to Learn Quran with Tajweed?",
-      category: "Quran Learning",
-      date: "July 2026",
-      description:
-        "Learn the importance of Tajweed and how to improve your Quran recitation step by step.",
-    },
-
-    {
-      title: "Benefits of Learning Arabic Language",
-      category: "Arabic Language",
-      date: "July 2026",
-      description:
-        "Discover how learning Arabic helps you understand Quran and Islamic teachings better.",
-    },
-
-    {
-      title: "10 Daily Masnoon Duas Every Muslim Should Know",
-      category: "Duas",
-      date: "July 2026",
-      description:
-        "A collection of important daily duas with Arabic text and meanings.",
-    },
-
-    {
-      title: "Importance of Salah in Islam",
-      category: "Islamic Knowledge",
-      date: "July 2026",
-      description:
-        "Understand the importance of Salah and its role in a Muslim's life.",
-    },
-
-    {
-      title: "Seerah of Prophet Muhammad ﷺ",
-      category: "Seerah",
-      date: "July 2026",
-      description:
-        "Learn beautiful lessons from the life of Prophet Muhammad ﷺ.",
-    },
-
-    {
-      title: "Quran Reading for Beginners",
-      category: "Beginner Course",
-      date: "July 2026",
-      description:
-        "A complete guide for beginners who want to start learning Quran.",
-    },
-
-  ];
 
   return (
 
@@ -153,7 +103,9 @@ export default function BlogPage() {
 
                 </p>
 
-                <button
+                <Link
+
+                href={`/blog/${blog.slug}`}
 
                 className="mt-6 flex items-center gap-2 text-emerald-700 font-bold hover:text-emerald-900"
 
@@ -163,7 +115,7 @@ export default function BlogPage() {
 
                   <ArrowRight size={18}/>
 
-                </button>
+                </Link>
 
               </div>
 

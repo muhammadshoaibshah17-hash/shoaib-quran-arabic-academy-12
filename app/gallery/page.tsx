@@ -18,35 +18,31 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
 
   const galleryItems = [
-
     {
       title: "Quran Learning Classes",
       description: "Online Quran and Tajweed learning sessions",
       image:
-        "https://images.unsplash.com/photo-1609599006353-e629aaabfeae",
+        "https://images.unsplash.com/photo-1584286595398-a59511e6b676?auto=format&fit=crop&w=800&q=80",
     },
-
     {
       title: "Arabic Language Classes",
       description: "Learn Arabic speaking and grammar",
       image:
-        "https://images.unsplash.com/photo-1542816417-0983c9c9ad53",
+        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
     },
-
     {
       title: "Islamic Education",
       description: "Authentic Islamic knowledge and guidance",
       image:
-        "https://images.unsplash.com/photo-1564769625905-50e93615e769",
+        "https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=800&q=80",
     },
-
     {
       title: "Student Success",
       description: "Helping students improve Quran skills",
       image:
-        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1",
+        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
     },
-
+  
   ];
 
   return (
