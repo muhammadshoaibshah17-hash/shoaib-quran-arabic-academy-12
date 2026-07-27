@@ -7,15 +7,17 @@ import { Calendar, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
-  const blog = blogs.find((item) => item.slug === params.slug);
+  const { slug } = await params;
+
+  const blog = blogs.find((item) => item.slug === slug);
 
   if (!blog) {
     return {
@@ -29,8 +31,10 @@ export async function generateMetadata({
   };
 }
 
-export default function BlogDetails({ params }: Props) {
-  const blog = blogs.find((item) => item.slug === params.slug);
+export default async function BlogDetails({ params }: Props) {
+  const { slug } = await params;
+
+  const blog = blogs.find((item) => item.slug === slug);
 
   if (!blog) {
     notFound();
@@ -42,7 +46,6 @@ export default function BlogDetails({ params }: Props) {
 
       <section className="bg-gradient-to-r from-emerald-900 to-emerald-700 text-white py-16">
         <div className="max-w-4xl mx-auto px-6">
-
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-emerald-200 hover:text-white mb-6"
@@ -55,9 +58,7 @@ export default function BlogDetails({ params }: Props) {
             {blog.category}
           </span>
 
-          <h1 className="text-5xl font-bold mt-5">
-            {blog.title}
-          </h1>
+          <h1 className="text-5xl font-bold mt-5">{blog.title}</h1>
 
           <div className="flex items-center gap-2 mt-5 text-emerald-100">
             <Calendar size={18} />
@@ -68,9 +69,7 @@ export default function BlogDetails({ params }: Props) {
 
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6">
-
           <div className="bg-white rounded-3xl shadow-lg p-10">
-
             {blog.content.map((paragraph, index) => (
               <p
                 key={index}
@@ -79,9 +78,7 @@ export default function BlogDetails({ params }: Props) {
                 {paragraph}
               </p>
             ))}
-
           </div>
-
         </div>
       </section>
 
