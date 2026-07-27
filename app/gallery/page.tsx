@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -8,6 +9,11 @@ import {
   Users,
 } from "lucide-react";
 
+export const metadata: Metadata = {
+  title: "Gallery | Shoaib Quran Academy",
+  description:
+    "View photos and moments from Shoaib Quran Academy's online Quran, Tajweed and Arabic language classes and student achievements.",
+};
 
 export default function GalleryPage() {
 
@@ -43,84 +49,56 @@ export default function GalleryPage() {
 
   ];
 
-
-
   return (
 
     <>
 
       <Navbar />
 
-
-
       {/* Hero */}
-
 
       <section className="bg-gradient-to-r from-emerald-900 to-emerald-700 text-white py-20">
 
         <div className="max-w-6xl mx-auto px-6 text-center">
 
-
           <h1 className="text-5xl font-bold">
             Our Gallery
           </h1>
-
 
           <p className="mt-5 text-xl text-emerald-100">
             Explore Quran, Arabic and Islamic learning journey
           </p>
 
-
         </div>
 
       </section>
 
-
-
-
-
       {/* Gallery Cards */}
-
-
 
       <section className="py-20 bg-gray-50">
 
-
         <div className="max-w-7xl mx-auto px-6">
 
-
-
           <div className="text-center mb-12">
-
 
             <Image
             className="mx-auto text-emerald-700"
             size={45}
             />
 
-
             <h2 className="text-4xl font-bold text-emerald-900 mt-4">
               Academy Highlights
             </h2>
-
 
             <p className="text-gray-600 mt-3">
               Some moments from our educational journey
             </p>
 
-
           </div>
-
-
-
-
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-
-
             {galleryItems.map((item,index)=>(
-
 
               <div
 
@@ -129,8 +107,6 @@ export default function GalleryPage() {
               className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition"
 
               >
-
-
 
                 <img
 
@@ -142,11 +118,7 @@ export default function GalleryPage() {
 
                 />
 
-
-
-
                 <div className="p-6">
-
 
                   <h3 className="text-xl font-bold text-emerald-900">
 
@@ -154,61 +126,36 @@ export default function GalleryPage() {
 
                   </h3>
 
-
-
                   <p className="text-gray-600 mt-3">
 
                     {item.description}
 
                   </p>
 
-
                 </div>
-
-
 
               </div>
 
-
             ))}
-
-
 
           </div>
 
-
-
         </div>
-
 
       </section>
 
-
-
-
-
-
-
-
       {/* Achievement Section */}
-
-
 
       <section className="py-20 bg-white">
 
-
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
 
-
-
           <div className="bg-emerald-50 rounded-3xl p-8 text-center">
-
 
             <BookOpen
             className="mx-auto text-emerald-700"
             size={40}
             />
-
 
             <h3 className="text-2xl font-bold mt-4 text-emerald-900">
 
@@ -216,29 +163,20 @@ export default function GalleryPage() {
 
             </h3>
 
-
             <p className="mt-3 text-gray-600">
 
               Quran reading, Tajweed and memorization guidance.
 
             </p>
 
-
           </div>
 
-
-
-
-
-
           <div className="bg-emerald-50 rounded-3xl p-8 text-center">
-
 
             <Users
             className="mx-auto text-emerald-700"
             size={40}
             />
-
 
             <h3 className="text-2xl font-bold mt-4 text-emerald-900">
 
@@ -246,29 +184,20 @@ export default function GalleryPage() {
 
             </h3>
 
-
             <p className="mt-3 text-gray-600">
 
               Helping students worldwide learn Quran and Arabic.
 
             </p>
 
-
           </div>
 
-
-
-
-
-
           <div className="bg-emerald-50 rounded-3xl p-8 text-center">
-
 
             <Award
             className="mx-auto text-emerald-700"
             size={40}
             />
-
 
             <h3 className="text-2xl font-bold mt-4 text-emerald-900">
 
@@ -276,26 +205,17 @@ export default function GalleryPage() {
 
             </h3>
 
-
             <p className="mt-3 text-gray-600">
 
               Professional teaching with Islamic values.
 
             </p>
 
-
           </div>
-
-
 
         </div>
 
-
       </section>
-
-
-
-
 
       <Footer />
 
