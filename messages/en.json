@@ -1,0 +1,13 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "about": "About",
+    "courses": "Courses",
+    "fees": "Fees",
+    "gallery": "Gallery",
+    "blog": "Blog",
+    "askMufti": "Ask Mufti",
+    "contact": "Contact",
+    "enroll": "Enroll Now"
+  }
+}

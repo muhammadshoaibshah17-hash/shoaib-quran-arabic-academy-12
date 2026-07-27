@@ -35,57 +35,76 @@ export default function AskMufti() {
 
 
 
- const handleSubmit = async (
-  e: React.FormEvent<HTMLFormElement>
-) => {
-
-  e.preventDefault();
-
-  console.log("SUBMIT CLICKED");
-
-  setSuccess("");
-  setError("");
-
-  if (!formRef.current) {
-    console.log("FORM REF MISSING");
-    return;
-  }
-
-  setLoading(true);
-
-  try {
-
-    console.log("SENDING EMAIL...");
-
-    await emailjs.sendForm(
-      SERVICE_ID,
-      TEMPLATE_ID,
-      formRef.current,
-      PUBLIC_KEY
-    );
-
-    console.log("EMAIL SENT");
-
-    setSuccess(
-      "Your question has been submitted successfully."
-    );
-
-    formRef.current.reset();
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
 
 
-  } catch (err) {
+    e.preventDefault();
 
-    console.error("EMAILJS ERROR:", err);
 
-    setError(
-      "Something went wrong"
-    );
+    setSuccess("");
 
-  }
+    setError("");
 
-  setLoading(false);
 
-};
+
+    if (!formRef.current) return;
+
+
+
+    setLoading(true);
+
+
+
+    try {
+
+
+      await emailjs.sendForm(
+
+        SERVICE_ID,
+
+        TEMPLATE_ID,
+
+        formRef.current,
+
+        PUBLIC_KEY
+
+      );
+
+
+
+      setSuccess(
+        "Your question has been submitted successfully."
+      );
+
+
+
+      formRef.current.reset();
+
+
+
+    } catch (err) {
+
+
+      console.error("EMAILJS ERROR:", err);
+
+
+
+      setError(
+        "Something went wrong. Please try again."
+      );
+
+
+    }
+
+
+
+    setLoading(false);
+
+
+  };
+
 
 
 
