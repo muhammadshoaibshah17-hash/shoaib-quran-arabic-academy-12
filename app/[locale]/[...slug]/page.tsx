@@ -1,10 +1,11 @@
 import { redirect } from "next/navigation";
 
-export default function LocaleCatchAll({
+export default async function LocaleCatchAll({
   params,
-}: Readonly<{
-  params: { slug: string[] };
-}>) {
-  const path = params.slug.join("/");
+}: {
+  params: Promise<{ slug: string[] }>;
+}) {
+  const { slug } = await params;
+  const path = slug ? slug.join("/") : "";
   redirect(path ? `/${path}` : "/");
 }
