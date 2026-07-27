@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "Learn Quran Online with Tajweed | Shoaib Quran Academy",
   description:
     "Join Shoaib Quran Academy for online Quran, Tajweed, Arabic language and Islamic studies classes. Learn with experienced instructors, flexible schedules, and a supportive global community.",
+  verification: {
+    google: "1UcnM-e7ZCwKeEpR2p22t-g5Up2IsINrSam08hkHPQo",
+  },
   openGraph: {
     title: "Learn Quran Online with Tajweed | Shoaib Quran Academy",
     description:
