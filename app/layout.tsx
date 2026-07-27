@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: "Learn Quran Online with Tajweed | Shoaib Quran Academy",
     description:
       "Join Shoaib Quran Academy for online Quran, Tajweed, Arabic language and Islamic studies classes. Learn with experienced instructors, flexible schedules, and a supportive global community.",
-    url: "https://shoaib-quran-arabic-academy.com",
+    url: "https://shoaib-quran-arabic-academy-12.vercel.app",
     siteName: "Shoaib Quran Academy",
     type: "website",
     images: [
